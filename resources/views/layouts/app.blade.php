@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,141 +7,105 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="/css/_all-skins.css">
+    <!-- <link href="/css/app.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="/css/weui.css">
+    <link href="/css/public.css" rel="stylesheet" type="text/css">
+
+    @yield('sub-css')
 
     <!-- Scripts -->
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
+    <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/js/global.js"></script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini" style="overflow:hidden;">
-    <div id="ajax-loader" style="cursor: progress; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 10000; overflow: hidden;">
-        <img src="img/ajax-loader.gif" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
-    </div>
-    <div class="wrapper">
-        <!--头部信息-->
-        <header class="main-header">
-            <a href="http://www.learun.cn/adms/index.html" target="_blank" class="logo">
-                <span class="logo-mini">LR</span>
-                <span class="logo-lg">learun<strong>敏捷框架</strong></span>
-            </a>
-            <nav class="navbar navbar-static-top">
-                <a class="sidebar-toggle">
-                    <span class="sr-only">Toggle navigation</span>
-                </a>
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o "></i>
-                                <span class="label label-success">4</span>
-                            </a>
+</head>
+
+<body>
+    <div id="dcWrap">
+        <div id="dcHead">
+            <div id="head">
+                <div class="logo">
+                    <a href="{{url('admin')}}"><img src="/img/logo.gif" alt="logo"></a>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li class="M"><a href="JavaScript:void(0);" class="topAdd">新建</a>
+                            <div class="drop mTopad"><a href="product.php?rec=add">商品</a> <a href="article.php?rec=add">文章</a> <a href="nav.php?rec=add">自定义导航</a> <a href="show.html">首页幻灯</a> <a href="page.php?rec=add">单页面</a> <a href="manager.php?rec=add">管理员</a>
+                                <a href="link.html"></a>
+                            </div>
                         </li>
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
+                        <li><a href="/" target="_blank">查看站点</a></li>
+                        <li><a href="index.php?rec=clear_cache">清除缓存</a></li>
+                        <li><a href="http://www.mycodes.net" target="_blank">帮助</a></li>
+                        <li class="noRight"><a href="module.html">DouPHP+</a></li>
+                    </ul>
+                    <ul class="navRight">
+                        <li class="M noLeft"><a href="JavaScript:void(0);">您好，admin</a>
+                            <div class="drop mUser">
+                                <a href="manager.php?rec=edit&id=1">编辑我的个人资料</a>
+                                <a href="manager.php?rec=cloud_account">设置云账户</a>
+                            </div>
                         </li>
-                        <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">9</span>
-                            </a>
-                        </li>
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
-                                <span class="hidden-xs">administrator</span>
-                            </a>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>个人信息</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-trash-o"></i>清空缓存</a></li>
-                                <li><a href="javascript:void();"><i class="fa fa-paint-brush"></i>皮肤设置</a></li>
-                                <li class="divider"></li>
-                                <li><a href="~/Login/OutLogin"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
-                            </ul>
-                        </li>
+                        <li class="noRight"><a href="login.php?rec=logout">退出</a></li>
                     </ul>
                 </div>
-            </nav>
-        </header>
-        <!--左边导航-->
-        <div class="main-sidebar">
-            <div class="sidebar">
-                <div class="user-panel">
-                    <div class="pull-left image">
-                        <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                    </div>
-                    <div class="pull-left info">
-                        <p>administrator</p>
-                        <a><i class="fa fa-circle text-success"></i>在线</a>
-                    </div>
-                </div>
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <a class="btn btn-flat"><i class="fa fa-search"></i></a>
-                        </span>
-                    </div>
-                </form>
-                <ul class="sidebar-menu" id="sidebar-menu">
-                    <!--<li class="header">导航菜单</li>-->
+            </div>
+        </div>
+        <!-- dcHead 结束 -->
+        <div id="dcLeft">
+            <div id="menu">
+                <ul class="top">
+                    <li><a href="{{url('admin')}}"><i class="home"></i><em>管理首页</em></a></li>
+                </ul>
+                <ul>
+                    <li><a href="system.html"><i class="system"></i><em>系统设置</em></a></li>
+                    <li><a href="nav.html"><i class="nav"></i><em>自定义导航栏</em></a></li>
+                    <li><a href="show.html"><i class="show"></i><em>首页幻灯广告</em></a></li>
+                    <li><a href="page.html"><i class="page"></i><em>单页面管理</em></a></li>
+                </ul>
+                <ul>
+                    <li><a href="{{url('admin/cate')}}"><i class="productCat"></i><em>菜品分类</em></a></li>
+                    <li><a href="product.html"><i class="product"></i><em>菜品列表</em></a></li>
+                </ul>
+                <ul>
+                    <li><a href="article_category.html"><i class="articleCat"></i><em>文章分类</em></a></li>
+                    <li><a href="article.html"><i class="article"></i><em>文章列表</em></a></li>
+                </ul>
+                <ul class="bot">
+                    <li><a href="backup.html"><i class="backup"></i><em>数据备份</em></a></li>
+                    <li><a href="mobile.html"><i class="mobile"></i><em>手机版</em></a></li>
+                    <li><a href="theme.html"><i class="theme"></i><em>设置模板</em></a></li>
+                    <li><a href="manager.html"><i class="manager"></i><em>网站管理员</em></a></li>
+                    <li><a href="manager.php?rec=manager_log"><i class="managerLog"></i><em>操作记录</em></a></li>
                 </ul>
             </div>
         </div>
-        <!--中间内容-->
-        <div id="content-wrapper" class="content-wrapper">
-            <div class="content-tabs">
-                <button class="roll-nav roll-left tabLeft">
-                    <i class="fa fa-backward"></i>
-                </button>
-                <nav class="page-tabs menuTabs">
-                    <div class="page-tabs-content" style="margin-left: 0px;">
-                        <a href="javascript:;" class="menuTab active" data-id="/Home/Default">欢迎首页</a>
-                        <a href="javascript:;" class="menuTab" data-id="/Home/About" style="padding-right: 15px;">平台介绍</a>
-                        <a href="javascript:;" class="menuTab" data-id="/SystemManage/Organize/Index">机构管理 <i class="fa fa-remove"></i></a>
-                        <a href="javascript:;" class="menuTab" data-id="/SystemManage/Role/Index">角色管理 <i class="fa fa-remove"></i></a>
-                        <a href="javascript:;" class="menuTab" data-id="/SystemManage/Duty/Index">岗位管理 <i class="fa fa-remove"></i></a>
-                        <a href="javascript:;" class="menuTab" data-id="/SystemManage/User/Index">用户管理 <i class="fa fa-remove"></i></a>
-                    </div>
-                </nav>
-                <button class="roll-nav roll-right tabRight">
-                    <i class="fa fa-forward" style="margin-left: 3px;"></i>
-                </button>
-                <div class="btn-group roll-nav roll-right">
-                    <button class="dropdown tabClose" data-toggle="dropdown">
-                        页签操作<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a class="tabReload" href="javascript:void();">刷新当前</a></li>
-                        <li><a class="tabCloseCurrent" href="javascript:void();">关闭当前</a></li>
-                        <li><a class="tabCloseAll" href="javascript:void();">全部关闭</a></li>
-                        <li><a class="tabCloseOther" href="javascript:void();">除此之外全部关闭</a></li>
-                    </ul>
-                </div>
-                <button class="roll-nav roll-right fullscreen"><i class="fa fa-arrows-alt"></i></button>
-            </div>
-            <div class="content-iframe" style="overflow: hidden;">
-                <div class="mainContent" id="content-main" style="margin: 10px; margin-bottom: 0px; padding: 0;">
-                    @yield('content')
-                    <!-- <iframe class="LRADMS_iframe" width="100%" height="100%" src="default.html" frameborder="0" data-id="default.html"></iframe> -->
-                </div>
+        <div id="dcMain">
+
+            @yield('content')
+
+        </div>
+        <div class="clear"></div>
+        <div id="dcFooter">
+            <div id="footer">
+                <div class="line"></div>
+                <ul>
+                    版权所有 © 2016 菜鸟发布科技有限公司，并保留所有权利。
+                </ul>
             </div>
         </div>
+        <!-- dcFooter 结束 -->
+        <div class="clear"></div>
     </div>
-    <script src="/js/jquery-1.10.2.min.js"></script>
+
+    <!-- Scripts -->
+    <!-- <script src="http://www.mycodes.net/js/tongji.js"></script> -->
+    <!-- <script src="http://www.mycodes.net/js/youxia.js" type="text/javascript"></script> -->
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/index.js"></script>
+
+    @yield('sub-js')
+
 </body>
 </html>

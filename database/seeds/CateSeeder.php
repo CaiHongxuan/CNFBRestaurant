@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class CateSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        $this->call(CateSeeder::class);
+    	DB::table('cnfb_cate')->delete();
+
+    	for($i=0; $i < 10; $i++)
+    	{
+    		\App\Cate::create([
+				'name'   => '牛排 ' . $i,
+    		]);
+    	}
     }
 }
