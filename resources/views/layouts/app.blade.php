@@ -61,22 +61,31 @@
                 </ul>
                 <ul>
                     <li><a href="system.html"><i class="system"></i><em>系统设置</em></a></li>
-                    <li><a href="nav.html"><i class="nav"></i><em>自定义导航栏</em></a></li>
                     <li><a href="show.html"><i class="show"></i><em>首页幻灯广告</em></a></li>
-                    <li><a href="page.html"><i class="page"></i><em>单页面管理</em></a></li>
+                    <!-- <li><a href="nav.html"><i class="nav"></i><em>自定义导航栏</em></a></li>
+                    <li><a href="page.html"><i class="page"></i><em>单页面管理</em></a></li> -->
+                </ul>
+                <ul>
+                    <li><a href="{{url('admin/user')}}"><i class="manager"></i><em>会员管理</em></a></li>
+                </ul>
+                <ul>
+                    <li><a href="{{url('admin/book')}}"><i class="page"></i><em>订单管理</em></a></li>
                 </ul>
                 <ul>
                     <li><a href="{{url('admin/cate')}}"><i class="productCat"></i><em>菜品分类</em></a></li>
-                    <li><a href="product.html"><i class="product"></i><em>菜品列表</em></a></li>
+                    <li><a href="{{url('admin/food')}}"><i class="product"></i><em>菜品列表</em></a></li>
                 </ul>
                 <ul>
+                    <li><a href="{{url('admin/table')}}"><i class="productCat"></i><em>餐台管理</em></a></a></li>
+                </ul>
+                <!-- <ul>
                     <li><a href="article_category.html"><i class="articleCat"></i><em>文章分类</em></a></li>
                     <li><a href="article.html"><i class="article"></i><em>文章列表</em></a></li>
-                </ul>
+                </ul> -->
                 <ul class="bot">
                     <li><a href="backup.html"><i class="backup"></i><em>数据备份</em></a></li>
-                    <li><a href="mobile.html"><i class="mobile"></i><em>手机版</em></a></li>
-                    <li><a href="theme.html"><i class="theme"></i><em>设置模板</em></a></li>
+                    <!-- <li><a href="mobile.html"><i class="mobile"></i><em>手机版</em></a></li> -->
+                    <!-- <li><a href="theme.html"><i class="theme"></i><em>设置模板</em></a></li> -->
                     <li><a href="manager.html"><i class="manager"></i><em>网站管理员</em></a></li>
                     <li><a href="manager.php?rec=manager_log"><i class="managerLog"></i><em>操作记录</em></a></li>
                 </ul>
