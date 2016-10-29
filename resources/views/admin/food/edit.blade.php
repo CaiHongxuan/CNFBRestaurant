@@ -19,7 +19,7 @@
         </div>
     @endif
 
-    <form action="{{url('admin/food/' . $food->id)}}" method="post">
+    <form action="{{url('admin/food/' . $food->id)}}" method="post" enctype="multipart/form-data">
         {{method_field('PATCH')}}
         {!! csrf_field() !!}
         <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
@@ -65,7 +65,8 @@
             <tr>
                 <td align="right">图片</td>
                 <td>
-                    <input type="file" name="media" value="0" size="5" class="inpMain" />
+                    <input type="file" name="media" value="{{ $food->media_id }}" size="5" class="inpMain" />
+                    <span class="cue">最大不超过2M</span>
                 </td>
             </tr>
             <tr>

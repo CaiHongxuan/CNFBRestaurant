@@ -24,6 +24,7 @@
             <th width="120" align="left">分类名称</th>
             <th width="60" align="center">排序</th>
             <th width="60" align="center">是否显示</th>
+            <th width="60" align="center">创建时间</th>
             <th width="80" align="center">操作</th>
         </tr>
         @foreach ($cates as $cate)
@@ -41,6 +42,7 @@
                 </label>
                 &nbsp;&nbsp;<label class="changeShow" onclick="toggleShow(this, {{$cate->id}})">切换</label>
             </td>
+            <td align="center">{{ $cate->created_at }}</td>
             <td align="center">
                 <form action="{{url('admin/cate/'.$cate->id)}}" method="POST">
                     <a href="{{url('admin/cate/'.$cate->id.'/edit')}}">编辑</a> |

@@ -4,16 +4,17 @@
  * @Author: Hongxuan
  * @Date:   2016-10-08 13:43:44
  * @Last Modified by:   Hongxuan
- * @Last Modified time: 2016-10-08 13:44:27
+ * @Last Modified time: 2016-10-24 11:11:41
  */
 
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 
+use DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\CnfbCate;
+use App\Cate;
 
 class CateController extends Controller
 {
@@ -23,7 +24,9 @@ class CateController extends Controller
 	 */
     public function index()
     {
-    	return view('admin/cate/index')->withCates(CnfbCate::all());
+        $cates = DB::table('cates')->orderBy('sort', 'desc')->orderBy('created_at', 'desc')->get();
+        return view('admin/cate/index')->with('cates', $cates);
+    	// return view('admin/cate/index')->withCates(Cate::all()->orderBy('sort', 'desc'));
     }
 
     /**
@@ -48,8 +51,8 @@ class CateController extends Controller
             'display'   => 'integer'
         ]);
 
-        $Cate = new CnfbCate;
-        $Cate->name    = $request->get('cate_name');
+        $Cate = new Cate;
+        $Cate->name    = trim($request->get('cate_name'));
         $Cate->sort    = $request->get('sort');
         $Cate->display = $request->get('display');
 
@@ -67,7 +70,7 @@ class CateController extends Controller
      */
     public function toggleDisplay(Request $request)
     {
-        $Cate = CnfbCate::find($request->get('cid'));
+        $Cate = Cate::find($request->get('cid'));
         $Cate->display = $Cate->display ? 0 : 1;
 
         if($Cate->save())
@@ -85,7 +88,7 @@ class CateController extends Controller
      */
     public function edit($id)
     {
-        return view('/admin/cate/edit')->withCate(CnfbCate::find($id));
+        return view('/admin/cate/edit')->withCate(Cate::find($id));
     }
 
     /**
@@ -97,13 +100,13 @@ class CateController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'cate_name' => 'required|unique:cnfb_cates,name,'.$id.'|max:20',
+            'cate_name' => 'required|unique:cates,name,'.$id.'|max:20',
             'sort'      => 'integer',
             'display'   => 'integer'
         ]);
 
-        $Cate = CnfbCate::find($id);
-        $Cate->name    = $request->get('cate_name');
+        $Cate = Cate::find($id);
+        $Cate->name    = trim($request->get('cate_name'));
         $Cate->sort    = $request->get('sort');
         $Cate->display = $request->get('display');
 
@@ -121,7 +124,7 @@ class CateController extends Controller
      */
     public function destroy($id)
     {
-        CnfbCate::find($id)->delete();
+        Cate::find($id)->delete();
         return redirect()->back()->withInput()->withErrors("删除成功！")->withSuccess('success');
     }
 

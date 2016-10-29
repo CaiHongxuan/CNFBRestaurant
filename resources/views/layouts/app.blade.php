@@ -20,19 +20,25 @@
     <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="/js/global.js"></script>
 </head>
-</head>
 
 <body>
     <div id="dcWrap">
         <div id="dcHead">
             <div id="head">
                 <div class="logo">
-                    <a href="{{url('admin')}}"><img src="/img/logo.gif" alt="logo"></a>
+                    <a href="{{url('admin')}}"><img src="/img/logo.png" alt="logo"></a>
                 </div>
                 <div class="nav">
                     <ul>
-                        <li class="M"><a href="JavaScript:void(0);" class="topAdd">新建</a>
-                            <div class="drop mTopad"><a href="product.php?rec=add">商品</a> <a href="article.php?rec=add">文章</a> <a href="nav.php?rec=add">自定义导航</a> <a href="show.html">首页幻灯</a> <a href="page.php?rec=add">单页面</a> <a href="manager.php?rec=add">管理员</a>
+                        <li class="M">
+                            <a href="JavaScript:void(0);" class="topAdd">新建</a>
+                            <div class="drop mTopad">
+                                <a href="product.php?rec=add">商品</a>
+                                <a href="article.php?rec=add">文章</a>
+                                <a href="nav.php?rec=add">自定义导航</a>
+                                <a href="show.html">首页幻灯</a>
+                                <a href="page.php?rec=add">单页面</a>
+                                <a href="manager.php?rec=add">管理员</a>
                                 <a href="link.html"></a>
                             </div>
                         </li>
@@ -76,7 +82,7 @@
                     <li><a href="{{url('admin/food')}}"><i class="product"></i><em>菜品列表</em></a></li>
                 </ul>
                 <ul>
-                    <li><a href="{{url('admin/table')}}"><i class="productCat"></i><em>餐台管理</em></a></a></li>
+                    <li><a href="{{url('admin/table')}}"><i class="productCat"></i><em>餐台管理</em></a></li>
                 </ul>
                 <!-- <ul>
                     <li><a href="article_category.html"><i class="articleCat"></i><em>文章分类</em></a></li>

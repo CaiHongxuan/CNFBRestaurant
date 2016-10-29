@@ -19,8 +19,8 @@
         </div>
     @endif
 
-    <form action="{{url('admin/food')}}" method="post">
-        {!! csrf_field() !!}
+    <form action="{{url('admin/food')}}" method="post" enctype="multipart/form-data">
+        {{ csrf_field() }}
         <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
             <tr>
                 <td width="80" align="right">菜品名称</td>

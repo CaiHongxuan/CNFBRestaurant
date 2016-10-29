@@ -64,7 +64,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    // 'timezone' => 'UTC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,6 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
+        // 七牛云存储
+        itbdw\QiniuStorage\QiniuFilesystemServiceProvider::class,
 
         //
 

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CnfbCate extends Model
+class Cate extends Model
 {
     // public function hasManyFoods()
     // {
