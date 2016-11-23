@@ -1,0 +1,71 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "id": 1,
+      "cate": 1,
+      "name": "糖醋排骨",
+      "avatar": "img/1.jpg",
+      "avatar_min": "img/1_min.jpg",
+      "price": 18.9,
+      "recipe": "新鲜排骨,米醋,白砂糖,干辣椒",
+      "taste": [
+        "酸",
+        "酸甜",
+        "甜"
+      ]
+    },
+    {
+      "id": 2,
+      "cate": 1,
+      "name": "红烧肉",
+      "avatar": "img/2.jpg",
+      "avatar_min": "img/2_min.jpg",
+      "price": 18.9,
+      "recipe": "五花肉,白砂糖,酱油,姜,蒜",
+      "taste": [
+        "微辣",
+        "中辣",
+        "超辣",
+        "特辣"
+      ]
+    },
+    {
+      "id": 3,
+      "cate": 1,
+      "name": "农家小炒肉",
+      "avatar": "img/3.jpg",
+      "avatar_min": "img/3_min.jpg",
+      "price": 12.9,
+      "recipe": "五花肉,尖椒,大蒜,干辣椒",
+      "taste": [
+        "微辣",
+        "中辣",
+        "超辣",
+        "特辣"
+      ]
+    },
+    {
+      "id": 4,
+      "cate": 2,
+      "name": "青椒肉丝",
+      "avatar": "img/4.jpg",
+      "avatar_min": "img/4_min.jpg",
+      "price": 13,
+      "taste": [
+        "微辣",
+        "中辣",
+        "超辣",
+        "特辣"
+      ]
+    },
+    {
+      "id": 5,
+      "cate": 2,
+      "name": "西红柿炒鸡蛋",
+      "avatar": "img/5.jpg",
+      "avatar_min": "img/5_min.jpg",
+      "price": 12
+    }
+  ]
+}

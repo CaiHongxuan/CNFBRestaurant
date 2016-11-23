@@ -1,13 +1,6 @@
 <?php
 
-/**
- * @Author: Hongxuan
- * @Date:   2016-10-08 15:06:57
- * @Last Modified by:   Hongxuan
- * @Last Modified time: 2016-10-27 10:41:38
- */
-
-namespace App;
+namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 

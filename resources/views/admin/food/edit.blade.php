@@ -15,7 +15,7 @@
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4>
                 提示!
-            </h4> <strong>新增失败：输入不符合要求</strong> {!! implode('<br>', $errors->all()) !!}
+            </h4> <strong>新增失败：输入不符合要求</strong> <br>{!! implode('<br>', $errors->all()) !!}
         </div>
     @endif
 
@@ -26,19 +26,26 @@
             <tr>
                 <td width="80" align="right">菜品名称</td>
                 <td>
-                    <input type="text" name="food_name" value="{{ $food->name }}" size="40" class="inpMain" />
+                    <input type="text" name="food_name" value="{{ $food->name }}" size="40" class="inpMain" required />
                 </td>
             </tr>
             <tr>
                 <td width="80" align="right">价格</td>
                 <td>
-                    <input type="text" name="food_price" value="{{ $food->price }}" size="10" class="inpMain" />
+                    <input type="text" name="food_price" value="{{ $food->price }}" size="10" class="inpMain" required />
                 </td>
             </tr>
             <tr>
                 <td width="80" align="right">描述</td>
                 <td>
                     <textarea name="description" cols="83" rows="4" class="textArea">{{ $food->description }}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td width="80" align="right">可选口味</td>
+                <td>
+                    <input type="text" name="taste" value="" size="40" class="inpMain" />
+                    <span class="cue">用英文逗号（,）分隔。如：微辣,中辣,超辣,特辣</span>
                 </td>
             </tr>
             <tr>
@@ -66,7 +73,7 @@
                 <td align="right">图片</td>
                 <td>
                     <input type="file" name="media" value="{{ $food->media_id }}" size="5" class="inpMain" />
-                    <span class="cue">最大不超过2M</span>
+                    <span class="cue">小于2M且格式为 jpg，jpeg，gif，png 中的一种</span>
                 </td>
             </tr>
             <tr>

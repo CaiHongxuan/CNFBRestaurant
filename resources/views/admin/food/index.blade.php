@@ -11,7 +11,7 @@
     <h3><a href="/admin/food/create" class="actionBtn add">添加菜品</a>菜品列表</h3>
 
     @if (count($errors) > 0)
-        <div class="alert alert-danger">
+        <div class="alert alert-{{ session('success') ? session('success') : 'danger' }}">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4>提示!</h4>
             {!! implode('<br>', $errors->all()) !!}
@@ -34,32 +34,34 @@
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>
             <th width="50" align="center">编号</th>
+            <th align="center">图片</th>
             <th width="100" align="left">名称</th>
             <th width="60" align="center">价格</th>
-            <th width="220" align="center">描述</th>
-            <th align="center">图片</th>
+            <th width="180" align="center">描述</th>
+            <th width="70" align="center">可选口味</th>
             <th width="60" align="center">剩余份数</th>
+            <th width="30" align="center">排序</th>
             <th width="80" align="center">所属分类</th>
-            <th width="60" align="center">排序</th>
             <th width="100" align="center">是否显示</th>
-            <th width="60" align="center">已卖出</th>
+            <th width="50" align="center">已卖出</th>
             <th width="60" align="center">更新时间</th>
             <th width="80" align="center">操作</th>
         </tr>
         @foreach ($foods as $food)
         <tr>
             <td align="center">{{ $food['id'] }}</td>
+            <td align="left">
+                @if (isset($food['media_arr']))
+                    <img src="{{ $food['media_arr']['0'] }}?imageView2/0/w/40/h/40" class="img-thumbnail">
+                @endif
+            </td>
             <td align="left">{{ $food['name'] }}</td>
             <td align="right">{{ $food['price'] }}&yen;</td>
             <td align="center">{{ $food['description'] }}</td>
-            <td align="left">
-                @if (isset($food['media_arr']))
-                    <img src="{{ $food['media_arr']['0'] }}?imageView2/0/w/40/h/40">
-                @endif
-            </td>
+            <td align="center">{{ $food['taste'] }}</td>
             <td align="center">@if ($food['rest'] >= 0) {{ $food['rest'] }} @else 无限量 @endif</td>
-            <td align="center">{{ $food['cate'] }}</td>
             <td align="center">{{ $food['sort'] }}</td>
+            <td align="center">{{ $food['cate'] or ''}}</td>
             <td align="center">
                 <label class="show">
                     @if ($food['display'] == 1)

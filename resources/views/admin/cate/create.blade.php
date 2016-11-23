@@ -15,7 +15,7 @@
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4>
                 提示!
-            </h4> <strong>新增失败：输入不符合要求</strong> {!! implode('<br>', $errors->all()) !!}
+            </h4> <strong>新增失败：输入不符合要求</strong> <br>{!! implode('<br>', $errors->all()) !!}
         </div>
     @endif
 

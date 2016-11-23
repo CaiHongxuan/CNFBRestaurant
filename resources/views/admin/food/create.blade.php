@@ -15,7 +15,7 @@
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4>
                 提示!
-            </h4> <strong>新增失败：输入不符合要求</strong> {!! implode('<br>', $errors->all()) !!}
+            </h4> <strong>新增失败：输入不符合要求</strong> <br>{!! implode('<br>', $errors->all()) !!}
         </div>
     @endif
 
@@ -25,13 +25,13 @@
             <tr>
                 <td width="80" align="right">菜品名称</td>
                 <td>
-                    <input type="text" name="food_name" value="" size="40" class="inpMain" />
+                    <input type="text" name="food_name" value="" size="40" class="inpMain" required />
                 </td>
             </tr>
             <tr>
                 <td width="80" align="right">价格</td>
                 <td>
-                    <input type="text" name="food_price" value="" size="10" class="inpMain" />
+                    <input type="text" name="food_price" value="" size="10" class="inpMain" required />
                 </td>
             </tr>
             <tr>
@@ -41,10 +41,17 @@
                 </td>
             </tr>
             <tr>
+                <td width="80" align="right">可选口味</td>
+                <td>
+                    <input type="text" name="taste" value="" size="40" class="inpMain" />
+                    <span class="cue">用英文逗号（,）分隔。如：微辣,中辣,超辣,特辣</span>
+                </td>
+            </tr>
+            <tr>
                 <td width="80" align="right">所属分类</td>
                 <td>
                     <select name="cate">
-                            <option value="" selected></option>
+                            <option value="0" selected></option>
                         @foreach ($cates as $cate)
                             <option value="{{ $cate->id }}">{{ $cate->name }}</option>
                         @endforeach
@@ -62,6 +69,7 @@
                 <td align="right">图片</td>
                 <td>
                     <input type="file" name="media" value="0" size="5" class="inpMain" />
+                    <span class="cue">小于2M且格式为 jpg，jpeg，gif，png 中的一种</span>
                 </td>
             </tr>
             <tr>

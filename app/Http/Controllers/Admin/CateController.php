@@ -4,29 +4,27 @@
  * @Author: Hongxuan
  * @Date:   2016-10-08 13:43:44
  * @Last Modified by:   Hongxuan
- * @Last Modified time: 2016-10-24 11:11:41
+ * @Last Modified time: 2016-11-15 00:44:48
  */
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
-
-use DB;
-use App\Http\Requests;
+use App\Entities\Cate;
 use App\Http\Controllers\Controller;
-use App\Cate;
+use DB;
+use Illuminate\Http\Request;
 
 class CateController extends Controller
 {
-	/**
-	 * 菜品类别视图
-	 * @return [type] [description]
-	 */
+    /**
+     * 菜品类别视图
+     * @return [type] [description]
+     */
     public function index()
     {
         $cates = DB::table('cates')->orderBy('sort', 'desc')->orderBy('created_at', 'desc')->get();
         return view('admin/cate/index')->with('cates', $cates);
-    	// return view('admin/cate/index')->withCates(Cate::all()->orderBy('sort', 'desc'));
+        // return view('admin/cate/index')->withCates(Cate::all()->orderBy('sort', 'desc'));
     }
 
     /**
@@ -35,7 +33,7 @@ class CateController extends Controller
      */
     public function create()
     {
-    	return view('admin/cate/create');
+        return view('admin/cate/create');
     }
 
     /**
@@ -47,16 +45,16 @@ class CateController extends Controller
     {
         $this->validate($request, [
             'cate_name' => 'required',
-            'sort'      => 'integer',
-            'display'   => 'integer'
+            'sort' => 'integer',
+            'display' => 'integer',
         ]);
 
         $Cate = new Cate;
-        $Cate->name    = trim($request->get('cate_name'));
-        $Cate->sort    = $request->get('sort');
+        $Cate->name = trim($request->get('cate_name'));
+        $Cate->sort = $request->get('sort');
         $Cate->display = $request->get('display');
 
-        if($Cate->save()){
+        if ($Cate->save()) {
             return redirect('admin/cate');
         } else {
             return redirect()->back()->withInput()->withErrors('保存失败！');
@@ -73,8 +71,7 @@ class CateController extends Controller
         $Cate = Cate::find($request->get('cid'));
         $Cate->display = $Cate->display ? 0 : 1;
 
-        if($Cate->save())
-        {
+        if ($Cate->save()) {
             return response()->json(array('msg' => '更新成功', 'show' => $Cate->display), 200);
         } else {
             return response()->json(array('msg' => '更新失败', 'show' => $Cate->display), 200);
@@ -100,17 +97,17 @@ class CateController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'cate_name' => 'required|unique:cates,name,'.$id.'|max:20',
-            'sort'      => 'integer',
-            'display'   => 'integer'
+            'cate_name' => 'required|unique:cates,name,' . $id . '|max:20',
+            'sort' => 'integer',
+            'display' => 'integer',
         ]);
 
         $Cate = Cate::find($id);
-        $Cate->name    = trim($request->get('cate_name'));
-        $Cate->sort    = $request->get('sort');
+        $Cate->name = trim($request->get('cate_name'));
+        $Cate->sort = $request->get('sort');
         $Cate->display = $request->get('display');
 
-        if($Cate->save()){
+        if ($Cate->save()) {
             return redirect('admin/cate');
         } else {
             return redirect()->back()->withInput()->withErrors('更新失败！');
@@ -125,7 +122,7 @@ class CateController extends Controller
     public function destroy($id)
     {
         Cate::find($id)->delete();
-        return redirect()->back()->withInput()->withErrors("删除成功！")->withSuccess('success');
+        return redirect()->back()->withInput()->withErrors("删除成功！")->with('success', 'success');
     }
 
 }

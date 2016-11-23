@@ -63,11 +63,11 @@ return [
         ],
 
         'qiniu' => [
-            'driver' => 'qiniu',
-            'domain' => 'ody1z03bo.bkt.clouddn.com',   //你的七牛域名
-            'access_key'    => 'f4hBG-CQJHkUY83tfqX75je31FClPdpKOhWoReU_',                          //AccessKey
-            'secret_key' => 'x7JdQFLklGrDH4X63Wmm9pdI3-1rPmTPk7b10z1t',                             //SecretKey
-            'bucket' => 'hongxuan',                                 //Bucket名字
+            'driver'     => 'qiniu',
+            'domain'     => 'ody1z03bo.bkt.clouddn.com', //你的七牛域名
+            'access_key' => 'f4hBG-CQJHkUY83tfqX75je31FClPdpKOhWoReU_', //AccessKey
+            'secret_key' => 'x7JdQFLklGrDH4X63Wmm9pdI3-1rPmTPk7b10z1t', //SecretKey
+            'bucket'     => 'hongxuan', //Bucket名字
         ],
 
     ],

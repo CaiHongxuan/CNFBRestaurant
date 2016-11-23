@@ -2,18 +2,18 @@
 * @Author: Hongxuan
 * @Date:   2016-09-30 13:13:10
 * @Last Modified by:   Hongxuan
-* @Last Modified time: 2016-10-08 12:01:31
+* @Last Modified time: 2016-11-15 00:11:22
 */
 
 .changeShow {
-	padding: 0px 15px;
-	line-height: 2em;
-	display: inline-block;
-	color: #ffffff;
-	text-align: center;
-	background-color: #1aad19;
-	border-radius: 5px;
-	box-sizing: border-box;
+    padding: 0px 15px;
+    line-height: 2em;
+    display: inline-block;
+    color: #ffffff;
+    text-align: center;
+    background-color: #1aad19;
+    border-radius: 5px;
+    box-sizing: border-box;
     cursor: pointer;
 }
 
@@ -28,6 +28,12 @@
     border-radius: 4px;
 }
 
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6
+}
+
 .alert-danger {
     color: #a94442;
     background-color: #f2dede;
@@ -38,11 +44,14 @@
     margin-top: 0;
     color: inherit;
 }
-.h4, h4 {
+
+.h4,
+h4 {
     font-size: 18px;
     margin-bottom: 10px;
     line-height: 1.1;
 }
+
 button.close {
     -webkit-appearance: none;
     padding: 0;
@@ -60,4 +69,43 @@ button.close {
     text-shadow: 0 1px 0 #fff;
     filter: alpha(opacity=20);
     opacity: .2;
+}
+
+
+/* 图片相框 */
+
+.img-thumbnail {
+    display: inline-block;
+    /*max-width: 100%;*/
+    height: auto;
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out
+}
+
+
+/* 顾客管理的图像和二维码 */
+
+.head_img {
+    height: auto;
+    max-height: 40px;
+    max-width: 40px;
+    border: 1px solid #ddd;
+}
+
+.tableBasic .contentHead {
+    background-color: #EEEEEE;
+}
+
+.tableBasic .contentHead span {
+    margin: 0px 5px;
+}
+
+.tableBasic .blank {
+    background-color: #FFF;
 }

@@ -4,17 +4,18 @@
  * @Author: Hongxuan
  * @Date:   2016-10-08 19:47:06
  * @Last Modified by:   Hongxuan
- * @Last Modified time: 2016-10-24 11:32:19
+ * @Last Modified time: 2016-11-16 15:33:35
  */
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use App\Entities\Table;
 use App\Http\Controllers\Controller;
-
-use App\Table;
+use Illuminate\Http\Request;
+use QrCode;
+use Cache;
+use DB;
+use Illuminate\Support\Facades\Storage;
 
 class TableController extends Controller
 {
@@ -24,7 +25,10 @@ class TableController extends Controller
      */
     public function index()
     {
-        return view('admin/table/index')->withTables(Table::all());
+        $tables = Cache::rememberForever('tables', function() {
+            return Table::all();
+        });
+        return view('admin/table/index')->with('tables', $tables);
     }
 
     /**
@@ -44,17 +48,20 @@ class TableController extends Controller
      */
     public function store(Request $request)
     {
+        Cache::forget('tables');
         $this->validate($request, [
             'table_name' => 'required|unique:tables,name|max:20',
         ]);
 
-        $Table = new Table;
-        $Table->name = trim($request->get('table_name'));
+        $tableName = trim($request->get('table_name'));
 
-        if($Table->save()){
+        if ($id = DB::table('tables')->insertGetId(['name' => $tableName, 'created_at' => date('Y-m-d H:i:s'), 'updated_at' => date('Y-m-d H:i:s')])) {
+            if(!file_exists(storage_path('app/public/qrcodes')))
+                mkdir(storage_path('app/public/qrcodes'));
+            QrCode::format('png')->size(300)->merge('/public/favicon.ico', .15)->margin(3)->generate(env('APP_URL') . '/table/' . $id, storage_path("app/public/qrcodes/qrcode_table" . $id . ".png"));
             return redirect('admin/table');
         } else {
-            return redirect()->back()->withInput()->withErrors('保存失败！');
+            return redirect()->back()->withErrors('保存失败！');
         }
     }
 
@@ -65,6 +72,7 @@ class TableController extends Controller
      */
     public function edit($tid)
     {
+        Cache::forget('tables');
         return view('admin/table/edit')->withTable(Table::find($tid));
     }
 
@@ -76,14 +84,15 @@ class TableController extends Controller
      */
     public function update(Request $request, $tid)
     {
+        Cache::forget('tables');
         $this->validate($request, [
-            'table_name' => 'required|unique:tables,name,'.$tid.'|max:20',
+            'table_name' => 'required|unique:tables,name,' . $tid . '|max:20',
         ]);
 
         $Table = Table::find($tid);
         $Table->name = trim($request->get('table_name'));
 
-        if($Table->save()){
+        if ($Table->save()) {
             return redirect('admin/table');
         } else {
             return redirect()->back()->withInput()->withErrors('更新失败！');
@@ -92,8 +101,10 @@ class TableController extends Controller
 
     public function destroy($tid)
     {
+        Cache::forget('tables');
+        $result = Storage::delete('public/qrcodes/qrcode_table' . $tid . '.png');
         Table::find($tid)->delete();
-        return redirect()->back()->withInput()->withErrors('删除成功！')->withSuccess('success');
+        return redirect()->back()->withErrors('删除成功！')->with('success', 'success');
     }
 
 }

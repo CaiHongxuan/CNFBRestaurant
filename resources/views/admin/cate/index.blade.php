@@ -10,8 +10,9 @@
 <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
     <h3><a href="/admin/cate/create" class="actionBtn add">添加分类</a>菜品分类</h3>
 
+
     @if (count($errors) > 0)
-        <div class="alert alert-danger">
+        <div class="alert alert-{{ session('success') ? session('success') : 'danger' }}">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4>提示!</h4>
             {!! implode('<br>', $errors->all()) !!}

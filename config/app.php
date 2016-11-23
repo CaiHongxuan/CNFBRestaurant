@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => '点餐宝',
 
     /*
     |--------------------------------------------------------------------------
@@ -121,7 +121,9 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
+
+    'log_max_files' => 30,
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -169,6 +171,10 @@ return [
          */
         // 七牛云存储
         itbdw\QiniuStorage\QiniuFilesystemServiceProvider::class,
+        // Dingo
+        Dingo\Api\Provider\LaravelServiceProvider::class,
+        // 二维码
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
         //
 
@@ -228,6 +234,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 
